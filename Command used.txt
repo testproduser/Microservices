@@ -1,0 +1,17 @@
+mvn --version
+java --version
+mvn clean                                                        	//create clean fat jar
+mvn spring-boot:run													//run maven project/jar
+java -jar .\target\accounts-0.0.1-SNAPSHOT.jar                 		//run jar
+docker build . -t testproduser/accounts:s4                          // build dockder image using docker file
+docker images                                                       // to list all docker images in local system
+docker inspect image a_ b_ c_ d_                                    // to get info about specific image with first four char of image id
+docker run -p 8080:8080 testproduser/accounts:s4					//to start docker image running as docker container in normal  mode(logs in terminal)
+ctrl+c                                                              // to stop the container
+docker run  -d -p 8080:8080 testproduser/accounts:s4				//to start docker image running as docker container in deatached  mode(no logs in terminal)
+docker ps                                                           //provides a list of the Docker containers running on local machine
+docker ps -a                                                        //provides a list of the Docker containers stopped on local machine
+docker start a_ b_ c_ d_                                            // to restart stopped container again , give at least 3-4  container id char
+docker stop a_ b_ c_ d_                                             // to  stop running container again , give at least 3-4  container id char
+docker run -d -p 8081:8080 testproduser/accounts:s4                //running docker another container change port number which going to be exposed outside docker network as localhost
+

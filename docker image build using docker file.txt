@@ -1,0 +1,58 @@
+1. delete .idea file if any present
+2. open the project one level above at section 4 in intellij
+3. load maven
+4. now .idea will be created at section 4 root
+add packging tag with jar value in pom.xml
+5. create Dockerfile without any extention
+
+#Start with a base image containing Java runtime
+FROM openjdk:21-jdk-slim
+
+# MAINTAINER instruction is deprecated in favor of using label
+# MAINTAINER eazybytes.com
+#Information around who maintains the image
+LABEL "org.opencontainers.image.authors"="testproduser"
+
+# Add the application's jar to the image
+COPY target/accounts-0.0.1-SNAPSHOT.jar accounts-0.0.1-SNAPSHOT.jar
+
+# execute the application
+ENTRYPOINT ["java", "-jar", "accounts-0.0.1-SNAPSHOT.jar"]
+
+6.run mvn clean install at cmd at project directiory level
+
+7.check the jar file for build  by running, java -jar target\accounts-0.0.1-SNAPSHOT.jar
+
+8.cls to clear screen 
+
+9. run to check current images available->docker images 
+
+10. docker build . -t testproduser/accounts:s4
+
+._-> if u are not at project directiory level provide actual path
+
+testproduser -> docker account name
+
+testproduser/accounts-> username of docker and repositoty name
+
+s4-> tag(any tage name)
+
+
+
+11. run to check current images available->docker images 
+
+
+12.give the 4 1st char of image name at last->docker inspect image 31a1
+
+13.to start docker running ->  docker run -p 8080:8080 testproduser/accounts:s4
+ to start docker running in  detached mode-> docker run -d -p 8080:8080 testproduser/accounts:s4
+
+14.to see all the docker container running status-> docker ps 
+
+15. to stop docker container--> docker stop 444f
+
+16.to see all the docker container stopped status-> docker ps -a 
+
+17. to restart stopped container again , give at least 3-4  container id char-> docker start  444f
+
+18.to start  running docker another container change port number which going to be exposed outside  docker network such as local host , as port indicates  port of isolated container inside so the  other conatiner port will not conflict ->  docker run -d -p 8081:8080 testproduser/accounts:s4
