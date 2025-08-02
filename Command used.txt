@@ -14,4 +14,4 @@ docker ps -a                                                        //provides a
 docker start a_ b_ c_ d_                                            // to restart stopped container again , give at least 3-4  container id char
 docker stop a_ b_ c_ d_                                             // to  stop running container again , give at least 3-4  container id char
 docker run -d -p 8081:8080 testproduser/accounts:s4                //running docker another container change port number which going to be exposed outside docker network as localhost
-
+mvn spring-boot:build-image                                         // to build bocker image using buildpacks
