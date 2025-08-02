@@ -16,3 +16,11 @@ docker stop a_ b_ c_ d_                                             // to  stop 
 docker run -d -p 8081:8080 testproduser/accounts:s4                //running docker another container change port number which going to be exposed outside docker network as localhost
 mvn spring-boot:build-image                                         // to build bocker image using buildpacks
 mvn compile jib:dockerBuild										    // to build bocker image using google jib
+docker image push docker.io/testproduser/accounts:s4                //To push the docker images to docker hub
+docker pull testproduser/accounts:s4                				//To pull the docker images from docker hub
+docker compose version												// docker compose version check
+docker compose up													//To Run the  all required microservices at once create docker compose yml in spring boot project
+docker compose up -d												//To Run the  all required microservices at once create docker compose yml in spring boot project in deatach mode
+docker compose stop													//To stop containers in componsed file
+docker compose start											    //To stop containers in componsed file
+docker compose down												    //To take down or remove/ delete containers in componsed file

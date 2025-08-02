@@ -1,0 +1,33 @@
+1. To push the docker iamges run :-
+
+docker image push docker.io/testproduser/accounts:s4
+
+docker image push docker.io/testproduser/loans:s4
+
+docker image push docker.io/testproduser/cards:s4
+
+2.To Pull the docker images from remote repo
+
+docker pull testproduser/accounts:s4
+
+3. to Run the  all required microservices at once create docker compose yml in spring boot project
+
+4.then run following cmd-> docker compose up
+
+to start detached mode->docker compose up -d
+
+5.To stop containers in componsed file
+
+docker compose stop
+
+6.To restart containers in componsed file(which alredy created by using up command and stopped only but not removed/deleted using down command )
+
+docker compose start
+
+7.To  take down or delete containers in componsed file
+
+docker compose down
+
+
+
+
