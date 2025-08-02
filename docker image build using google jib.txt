@@ -1,0 +1,50 @@
+It supported language docker image building of java  only
+
+1.add following tags in pom xml
+this in  parent
+
+<packaging>jar</packaging>
+
+this in configuration in build 
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.2</version>
+				<configuration>
+					<to>
+						<image>testproduser/${project.artifactId}:s4</image>
+					</to>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	
+NOw run  cmd at project directory level-> mvn compile jib:dockerBuild
+	
+	
+
+2. run to check current images available->docker images 
+
+
+3, run docker on port mapping or port forawarding cmd at project directory level
+
+to start docker running  as new container->  docker run -p 8090:8090 testproduser/loans:s4
+ to start docker running in  detached mode-> docker run -d -p 8090:8090 testproduser/loans:s4
+ 
+ 
+4..to see all the docker container running status-> docker ps 
+
+5. to stop docker container--> docker stop 444f
+
+6.to see all the docker container stopped status-> docker ps -a 
+
+7. to restart stopped container again , give at least 3-4  container id char-> docker start  444f
+
+18.to start  running docker another container of same moicro service change port number which going to be exposed outside  docker network such as local host , as port indicates  port of isolated container inside so the  other conatiner port will not conflict ->  docker run -d -p 8081:8080 testproduser/accounts:s4
+
+
+ 
