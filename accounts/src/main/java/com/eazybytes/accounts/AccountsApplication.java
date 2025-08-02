@@ -16,6 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaRepositories("com.eazybytes.accounts.repository")
 @EntityScan("com.eazybytes.accounts.model")*/
 @EnableJpaAuditing(auditorAwareRef = "auditAwareImpl")
+@EnableConfigurationProperties(value = {AccountsContactInfoDto.class})
 @OpenAPIDefinition(
 		info = @Info(
 				title = "Accounts microservice REST API Documentation",
@@ -36,8 +37,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 				url = "https://www.eazybytes.com/swagger-ui.html"
 		)
 )
-@EnableConfigurationProperties(value = {AccountsContactInfoDto.class})
-public class AccountsApplication {
+public class  AccountsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AccountsApplication.class, args);

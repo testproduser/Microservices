@@ -37,21 +37,19 @@ import org.springframework.web.bind.annotation.*;
 @Validated
 public class AccountsController {
 
-    private final IAccountsService iAccountsService;
-
+    private IAccountsService iAccountsService;
     public AccountsController(IAccountsService iAccountsService) {
         this.iAccountsService = iAccountsService;
     }
 
     @Value("${build.version}")
-    private String buildversion;
+    private String buildVersion;
 
     @Autowired
     private Environment environment;
 
     @Autowired
     private AccountsContactInfoDto accountsContactInfoDto;
-
 
     @Operation(
             summary = "Create Account REST API",
@@ -179,31 +177,18 @@ public class AccountsController {
         }
     }
 
-    @Operation(
-            summary = "Get Contact Info",
-            description = "Contact Info details that can be reached out in case of any issues"
-    )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "HTTP Status OK"
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "HTTP Status Internal Server Error",
-                    content = @Content(
-                            schema = @Schema(implementation = ErrorResponseDto.class)
-                    )
-            )
+    @GetMapping("/build-info")
+    public ResponseEntity getBuildInfo() {
+        return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
     }
-    )
-    @GetMapping("/contact-info")
+
+    @GetMapping("/java-version")
+    public ResponseEntity getJavaVersion() {
+        return ResponseEntity.status(HttpStatus.OK).body(environment.getProperty("JAVA_HOME"));
+    }
+    @GetMapping("contact-info")
     public ResponseEntity<AccountsContactInfoDto> getContactInfo() {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(accountsContactInfoDto);
+        return ResponseEntity.status(HttpStatus.OK).body(accountsContactInfoDto);
     }
-
-
 
 }
