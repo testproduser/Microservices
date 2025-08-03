@@ -1,3 +1,4 @@
+A. Actuator refersh(using actuator refresh we need to invoke all ms actutaor refresh)
 1.Add actuator dependncy to each ms in pom file if already not available
 
  <dependency>
@@ -20,3 +21,17 @@ http://localhost:8080/actuator/refresh
 http://localhost:8090/actuator/refresh
 http://localhost:9000/actuator/refresh
 
+
+
+B. using bus refresh(using bus refresh we need to invoke only one busrefresh)
+
+1.Add rebbitmq bus dependncy to each ms in pom file including config server
+
+<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-bus-amqp</artifactId>
+		</dependency>
+
+2. Do post request to actuator/refersh to load latest config changes without stoping ms /restarting ms
+it refreshes all ms config in one reuest for accounts,loans and cards refersh
+http://localhost:8080/actuator/busrefresh
