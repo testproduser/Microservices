@@ -1,0 +1,22 @@
+1.Add actuator dependncy to each ms in pom file if already not available
+
+ <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+2. add property to expose all endpoints of actuator including refresh 
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+		
+3. Do post request to actuator/refersh to load latest config changes without stoping ms /restarting ms
+for accounts,loans and cards refersh
+
+http://localhost:8080/actuator/refresh
+http://localhost:8090/actuator/refresh
+http://localhost:9000/actuator/refresh
+
