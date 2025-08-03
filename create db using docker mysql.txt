@@ -1,0 +1,19 @@
+ docker run -p 3306:3306 --name accountdb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=accountsdb -d mysql
+ 
+ docker run -p 3307:3306 --name loansdb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=loansdb -d mysql
+  
+ docker run -p 3308:3306 --name cardsdb -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=cardsdb -d mysql
+ 
+ 
+ 
+ here we are
+ 1. exposing different ports to oustide enviorment of docker aand kept port of container inside(docker internal number) same as it is in isolated docker enviorment
+ 2. --name to give db a name
+ 3. -e for enviorment of db
+ 4.MYSQL_ROOT_PASSWORD to set a password at start up of mysql db container 
+ 5.-e for enviorment of db
+ 6.MYSQL_DATABASE to provide name to the schema of db 
+ 7.-d to start container in detach mode
+ 8. container name (mysql)
+ 9.DATA will be available until u DELETE the container , u can STOP the container so data will be not lost in this case but dont delete the container 
+ 
