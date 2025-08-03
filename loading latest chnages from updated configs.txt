@@ -35,3 +35,25 @@ B. using bus refresh(using bus refresh we need to invoke only one busrefresh)
 2. Do post request to actuator/refersh to load latest config changes without stoping ms /restarting ms
 it refreshes all ms config in one reuest for accounts,loans and cards refersh
 http://localhost:8080/actuator/busrefresh
+
+
+c. To do refersh automatically using busrefresh by github webhooks whenever gitpush happens in eazybank_ms_config repo(optional)
+
+1. Add monitor dependency to only configserver ms(it will montior any event using http://localhost:8071/monitor)
+<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-config-monitor</artifactId>
+		</dependency>
+		
+2.create hook  from https://console.hookdeck.com/--> add destination -> local server  as we are currently using local machine if is public domain then no need
+ follow the steps (after installing scoop)
+ scoop bucket add hookdeck https://github.com/hookdeck/scoop-hookdeck-cli.git
+ scoop install hookdeck
+ hookdeck login --cli-key 3x8lanfdwb7hbh70gubrbfvffmsrrvswc2z7wmq5gs855dj1mz
+ hookdeck listen 8071 Source --cli-path /monitor
+ 
+ 3, above steps will give 
+ Sources
+🔌 Source URL: https://hkdk.events/ragcgen8gr0xlt
+4. paste the link in web hook url with Content type as application/json
+ and set for push event to git repo settings 
