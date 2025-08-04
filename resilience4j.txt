@@ -269,3 +269,11 @@ public RetryGatewayFilterFactory.RetryConfig setBackoff(
     int factor,
     boolean basedOnPreviousValue
 )  we will above method to setBackoff
+
+
+6. Retry pattern with fall back for each ms
+ 3 retry and then fallback
+2025-08-04T17:58:37.585+05:30 DEBUG 19696 --- [accounts] [nio-8080-exec-1] c.e.a.controller.AccountsController      : getBuildInfo() method Invoked
+2025-08-04T17:58:44.647+05:30 DEBUG 19696 --- [accounts] [nio-8080-exec-1] c.e.a.controller.AccountsController      : getBuildInfo() method Invoked
+2025-08-04T17:58:45.654+05:30 DEBUG 19696 --- [accounts] [nio-8080-exec-1] c.e.a.controller.AccountsController      : getBuildInfo() method Invoked
+2025-08-04T17:58:45.656+05:30 DEBUG 19696 --- [accounts] [nio-8080-exec-1] c.e.a.controller.AccountsController      : getBuildInfoFallback() method Invoked
