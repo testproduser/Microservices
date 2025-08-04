@@ -277,3 +277,10 @@ public RetryGatewayFilterFactory.RetryConfig setBackoff(
 2025-08-04T17:58:44.647+05:30 DEBUG 19696 --- [accounts] [nio-8080-exec-1] c.e.a.controller.AccountsController      : getBuildInfo() method Invoked
 2025-08-04T17:58:45.654+05:30 DEBUG 19696 --- [accounts] [nio-8080-exec-1] c.e.a.controller.AccountsController      : getBuildInfo() method Invoked
 2025-08-04T17:58:45.656+05:30 DEBUG 19696 --- [accounts] [nio-8080-exec-1] c.e.a.controller.AccountsController      : getBuildInfoFallback() method Invoked
+
+7. you can can also mention exception to ignoreExceptions to retry,if null pointer exception occurs, retry will not happen,Excution will directly goto fall back
+ ignoreExceptions:
+        - java.lang.NullPointerException
+ you can can also mention retryExceptions to try  retry, in this case retry will happen for only these exceptions,if TimeoutException  occurs, then only retry will  happen
+       retryExceptions:
+        - java.util.concurrent.TimeoutException
