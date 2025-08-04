@@ -1,0 +1,136 @@
+1. add below dependcy to gatewayserver
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
+		</dependency>
+2. add below properties in gatewayserver  application.yml
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 10
+      permittedNumberOfCallsInHalfOpenState: 2
+      failureRateThreshold: 50
+      waitDurationInOpenState: 10000
+	  
+	  
+3. Add filter of circuitbreaker to request going to accounts ms
+		return routeLocatorBuilder.routes()
+						.route(p -> p
+								.path("/eazybank/accounts/**")
+								.filters( f -> f.rewritePath("/eazybank/accounts/(?<segment>.*)","/${segment}")
+										.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+										.circuitBreaker(config -> config.setName("accountsCircuitBreaker")
+								.uri("lb://ACCOUNTS"))
+								
+
+4. montior below endpoints of actuator for avaialble circuitbreaker and its status
+
+http://localhost:8072/actuator/circuitbreakers     (show info about status of circuitbreaker)
+gives below info
+a.
+///////////CLOSED
+{
+  "circuitBreakers": {
+    "accountsCircuitBreaker": {
+      "failureRate": "-1.0%",
+      "slowCallRate": "-1.0%",
+      "failureRateThreshold": "50.0%",
+      "slowCallRateThreshold": "100.0%",
+      "bufferedCalls": 4,
+      "failedCalls": 1,
+      "slowCalls": 0,
+      "slowFailedCalls": 0,
+      "notPermittedCalls": 0,
+      "state": "CLOSED"
+    }
+  }
+}
+
+
+///////////OPEN
+{
+  "circuitBreakers": {
+    "accountsCircuitBreaker": {
+      "failureRate": "100.0%",
+      "slowCallRate": "0.0%",
+      "failureRateThreshold": "50.0%",
+      "slowCallRateThreshold": "100.0%",
+      "bufferedCalls": 2,
+      "failedCalls": 2,
+      "slowCalls": 0,
+      "slowFailedCalls": 0,
+      "notPermittedCalls": 0,
+      "state": "OPEN"
+    }
+  }
+}
+
+
+///////////HALF_OPEN
+{
+  "circuitBreakers": {
+    "accountsCircuitBreaker": {
+      "failureRate": "-1.0%",
+      "slowCallRate": "-1.0%",
+      "failureRateThreshold": "50.0%",
+      "slowCallRateThreshold": "100.0%",
+      "bufferedCalls": 1,
+      "failedCalls": 0,
+      "slowCalls": 0,
+      "slowFailedCalls": 0,
+      "notPermittedCalls": 0,
+      "state": "HALF_OPEN"
+    }
+  }
+}
+
+
+
+http://localhost:8072/actuator/circuitbreakerevents?name=accountsCircuitBreaker
+
+{
+  "circuitBreakerEvents": [
+    {
+      "circuitBreakerName": "accountsCircuitBreaker",
+      "type": "ERROR",
+      "creationTime": "2025-08-04T15:51:55.039360800+05:30[Asia/Calcutta]",
+      "errorMessage": "java.util.concurrent.TimeoutException: Did not observe any item or terminal signal within 1000ms in 'circuitBreaker' (and no fallback has been configured)",
+      "durationInMs": 1000,
+      "stateTransition": null
+    },
+    {
+      "circuitBreakerName": "accountsCircuitBreaker",
+      "type": "SUCCESS",
+      "creationTime": "2025-08-04T15:53:21.187804300+05:30[Asia/Calcutta]",
+      "errorMessage": null,
+      "durationInMs": 12,
+      "stateTransition": null
+    },
+    {
+      "circuitBreakerName": "accountsCircuitBreaker",
+      "type": "SUCCESS",
+      "creationTime": "2025-08-04T15:53:26.230583200+05:30[Asia/Calcutta]",
+      "errorMessage": null,
+      "durationInMs": 7,
+      "stateTransition": null
+    },
+    {
+      "circuitBreakerName": "accountsCircuitBreaker",
+      "type": "SUCCESS",
+      "creationTime": "2025-08-04T15:53:27.417447400+05:30[Asia/Calcutta]",
+      "errorMessage": null,
+      "durationInMs": 7,
+      "stateTransition": null
+    }
+  ]
+}
+
+    {
+      "circuitBreakerName": "accountsCircuitBreaker",
+      "type": "STATE_TRANSITION",
+      "creationTime": "2025-08-04T15:57:21.824886300+05:30[Asia/Calcutta]",
+      "errorMessage": null,
+      "durationInMs": null,
+      "stateTransition": "OPEN_TO_HALF_OPEN"
+    },
