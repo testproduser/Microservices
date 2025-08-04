@@ -230,3 +230,23 @@ http://localhost:8080/actuator/circuitbreakerevents
     }
   ]
 }
+
+
+
+
+4. maximum wait time for any http requesst to assign coonection from ms like account and send response except ms implementing circuitbreaker as it has its own time in global 
+
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 2s
+		
+if response taskes more than 2 second , gatewayserver kills requesst and gives response as:
+
+{
+    "timestamp": "2025-08-04T11:33:37.781+00:00",
+    "path": "/eazybank/loans/api/contact-info",
+    "status": 504,
+    "error": "Gateway Timeout",
+    "requestId": "f690aced-2",
+    "message": "Response took longer than timeout: PT2S",
+    "trace": "org.springframework.cloud.gateway.support.TimeoutException: Response took longer than timeout: PT2S\r\n"
