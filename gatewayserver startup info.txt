@@ -1,0 +1,1 @@
+1.Startup the config server-> eureka server-> accounts,cards and loans microservices -> at last gateway server so that it will get all ms details from eureka server
