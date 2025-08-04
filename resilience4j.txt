@@ -249,4 +249,23 @@ if response taskes more than 2 second , gatewayserver kills requesst and gives r
     "error": "Gateway Timeout",
     "requestId": "f690aced-2",
     "message": "Response took longer than timeout: PT2S",
-    "trace": "org.springframework.cloud.gateway.support.TimeoutException: Response took longer than timeout: PT2S\r\n"
+    "trace": "org.springframework.cloud.gateway.support.TimeoutException: Response took longer than timeout: PT2S\r\n"}
+	
+	
+5. Retry filter to retry a request if reuest is taking long to send reponse / or not sending reponse.
+
+.retry(retryConfig -> retryConfig.setRetries(3)
+										.setMethods(HttpMethod.GET)
+										.setBackoff(Duration.ofMillis(100),Duration.ofMillis(1000),2,true)))
+										
+reponse will be tried 3 times + 1 intial request= 4 request
+after 1st initial requesst by client-> 2nd will be after 100ms -> as factor is 2 so 3rd will be at least after 200 ms -> 4th will be atleast 400ms after 3 rd requesst(200*2)
+
+/// below actual java method of back off
+
+public RetryGatewayFilterFactory.RetryConfig setBackoff(
+    java.time.Duration firstBackoff,
+    java.time.Duration maxBackoff,
+    int factor,
+    boolean basedOnPreviousValue
+)  we will above method to setBackoff
