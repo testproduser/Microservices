@@ -134,3 +134,99 @@ http://localhost:8072/actuator/circuitbreakerevents?name=accountsCircuitBreaker
       "durationInMs": null,
       "stateTransition": "OPEN_TO_HALF_OPEN"
     },
+	
+	
+/////Feign client resilience
+
+1.To make individual ms resilience add below dependcy
+<dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+ </dependency>
+ 
+ 2. add below properties to ms 
+ spring:
+	cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      slidingWindowSize: 10
+      permittedNumberOfCallsInHalfOpenState: 2
+      failureRateThreshold: 50
+      waitDurationInOpenState: 10000
+	  
+3. fallback classes by implementing the feign client interfaces for each method
+
+http://localhost:8080/actuator/circuitbreakers
+
+{
+  "circuitBreakers": {
+    "CardsFeignClientfetchCardDetailsStringString": {
+      "failureRate": "-1.0%",
+      "slowCallRate": "-1.0%",
+      "failureRateThreshold": "50.0%",
+      "slowCallRateThreshold": "100.0%",
+      "bufferedCalls": 2,
+      "failedCalls": 0,
+      "slowCalls": 0,
+      "slowFailedCalls": 0,
+      "notPermittedCalls": 0,
+      "state": "CLOSED"
+    },
+    "LoansFeignClientfetchLoanDetailsStringString": {
+      "failureRate": "-1.0%",
+      "slowCallRate": "-1.0%",
+      "failureRateThreshold": "50.0%",
+      "slowCallRateThreshold": "100.0%",
+      "bufferedCalls": 2,
+      "failedCalls": 0,
+      "slowCalls": 0,
+      "slowFailedCalls": 0,
+      "notPermittedCalls": 0,
+      "state": "CLOSED"
+    }
+  }
+}
+
+
+http://localhost:8080/actuator/circuitbreakerevents
+{
+  "circuitBreakerEvents": [
+    {
+      "circuitBreakerName": "LoansFeignClientfetchLoanDetailsStringString",
+      "type": "SUCCESS",
+      "creationTime": "2025-08-04T16:45:06.639857200+05:30[Asia/Calcutta]",
+      "errorMessage": null,
+      "durationInMs": 201,
+      "stateTransition": null
+    },
+    {
+      "circuitBreakerName": "CardsFeignClientfetchCardDetailsStringString",
+      "type": "SUCCESS",
+      "creationTime": "2025-08-04T16:45:06.684070200+05:30[Asia/Calcutta]",
+      "errorMessage": null,
+      "durationInMs": 39,
+      "stateTransition": null
+    },
+    {
+      "circuitBreakerName": "LoansFeignClientfetchLoanDetailsStringString",
+      "type": "SUCCESS",
+      "creationTime": "2025-08-04T16:45:48.581264900+05:30[Asia/Calcutta]",
+      "errorMessage": null,
+      "durationInMs": 9,
+      "stateTransition": null
+    },
+    {
+      "circuitBreakerName": "CardsFeignClientfetchCardDetailsStringString",
+      "type": "SUCCESS",
+      "creationTime": "2025-08-04T16:45:48.590141100+05:30[Asia/Calcutta]",
+      "errorMessage": null,
+      "durationInMs": 9,
+      "stateTransition": null
+    }
+  ]
+}
