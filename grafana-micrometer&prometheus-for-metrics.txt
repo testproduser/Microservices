@@ -1,0 +1,12 @@
+1. add below dependecy in all ms
+
+   <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+
+2. add below property in all ms
+management:
+  metrics:
+    tags:
+      application: ${spring.application.name}
