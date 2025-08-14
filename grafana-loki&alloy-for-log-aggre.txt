@@ -1,0 +1,10 @@
+1. run docker compose command in prod
+docker compose up -d
+
+2. Access localhost:3000 for grafana UI
+
+goto-> home-> connection -> view configiured datasource ->loki
+
+3. explore loke
+
+4. select appropriate lannble filters
