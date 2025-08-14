@@ -10,3 +10,24 @@ management:
   metrics:
     tags:
       application: ${spring.application.name}
+
+3. Added prometheus config file then its service and image details in compose file
+
+4.Relocated the grafana datasource from docker-compose file to data.yml under grafana folder
+
+6. run docker compose command in prod
+docker compose up -d
+
+7. Access localhost:3000 for grafana UI
+
+goto-> home-> connection -> view configiured datasource ->prometheus
+
+8. explore prometheus
+
+9. select appropriate lable filters
+
+10. sign to grafana local with admin user and admin password
+
+11.try importing dashboard and creating them
+
+12. use alert rules to create rules,recive altets using webhook
