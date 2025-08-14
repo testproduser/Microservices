@@ -11,3 +11,11 @@
 logging:
   pattern:
     level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
+
+3. Added Tempo config file then its service and image details in compose file
+
+4. updated data.yml in grafana to add Tempo as datasource
+
+5.update common config file for env variables
+
+6.Added Otel service names for env in compose file
