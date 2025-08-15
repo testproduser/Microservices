@@ -270,7 +270,6 @@ services:
   accounts:
     image: "testproduser/accounts:s2"
     container_name: accounts-ms
-    ports:
     depends_on:
       configserver:
         condition: service_healthy
