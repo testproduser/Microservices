@@ -1,0 +1,13 @@
+1. Update dependecy in messages ms
+
+Spring cloud stream has inclued spring functions dependecncy 
+
+2.update message-ms properies with rabitmq connection
+
+3.Update dependecy in accounts ms
+
+4.update accounts-ms properies with rabitmq connection
+
+5.update accounts service in accounts-ms for sending messages
+
+use rabitmq to send communication from accounts to message-ms
