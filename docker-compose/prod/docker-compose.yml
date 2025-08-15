@@ -230,7 +230,7 @@ services:
 
 
   configserver:
-    image: "testproduser/configserver:s2"
+    image: "testproduser/configserver:s12"
     container_name: configserver-ms
     ports:
       - "8071:8071"
@@ -247,7 +247,7 @@ services:
       OTEL_SERVICE_NAME: "configserver"
 
   eurekaserver:
-    image: "testproduser/eurekaserver:s2"
+    image: "testproduser/eurekaserver:s12"
     container_name: eurekaserver-ms
     ports:
       - "8070:8070"
@@ -268,7 +268,7 @@ services:
       OTEL_SERVICE_NAME: "eurekaserver"
 
   accounts:
-    image: "testproduser/accounts:s2"
+    image: "testproduser/accounts:s12"
     container_name: accounts-ms
     depends_on:
       configserver:
@@ -289,7 +289,7 @@ services:
       service: microservice-eureka-config
 
   loans:
-    image: "testproduser/loans:s2"
+    image: "testproduser/loans:s12"
     container_name: loans-ms
     depends_on:
       configserver:
@@ -310,7 +310,7 @@ services:
       service: microservice-eureka-config
 
   cards:
-    image: "testproduser/cards:s2"
+    image: "testproduser/cards:s12"
     container_name: cards-ms
     depends_on:
       configserver:
@@ -331,7 +331,7 @@ services:
       service: microservice-eureka-config
 
   gatewayserver:
-    image: "testproduser/gatewayserver:s2"
+    image: "testproduser/gatewayserver:s12"
     container_name: gatewayserver-ms
     ports:
       - "8072:8072"
