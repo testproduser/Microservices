@@ -60,7 +60,7 @@ helm dependencies build
 cd eazybank-services
 helm create dev-env   ( then follow step 2)
 
-10.update the dependencies for dev-env  chart in Chart.yml
+10.update the dependencies for dev-env  chart in Chart.yml(requires all ms and common template )
 
 11. add common template ref file in deployment.yml and service.yml of dev-env  template
 
