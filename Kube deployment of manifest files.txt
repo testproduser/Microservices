@@ -1,0 +1,14 @@
+1. Create kubernetes manifest files with kind of Deployment
+to specify deloyment with requirements
+2. add Service kind to manfifest file to provide details how will be exxposed to ouside their ntw
+
+3, Deploy the maifest file with Deployment and Service kind to kubernetes using apply
+
+kubectl apply -f 3_configserver.yml
+
+4. Use ConfigMap kind to provide enviorments details and info as key value pair
+
+kubectl apply -f 2_configmaps.yml
+
+5.To provide password and sensitive data use secret kind
+
