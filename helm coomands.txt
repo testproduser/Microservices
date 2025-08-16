@@ -46,4 +46,13 @@ helm create eazybank-common
 4. create new folder eazybank-services, in that create helm using above two steps for accounts 
 cd accounts
 helm create accounts  ( then follow step 2)
+
+5.update the dependencies for accounts chart in Chart.yml
+
+6. add common template ref file in deployment.yml and service.yml of accounts template
+
+7. Now buld dependencies for accounts helm chart inside(C:\Users\vaibh\IdeaProjects\section2\helm\eazybank-services\accounts>), using
+helm dependencies build
+
+8.
  
