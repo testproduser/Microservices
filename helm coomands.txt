@@ -64,6 +64,10 @@ helm create dev-env   ( then follow step 2)
 
 11. add common template ref file in deployment.yml and service.yml of dev-env  template
 
-12. Now buld dependencies for accounts helm chart inside(C:\Users\vaibh\IdeaProjects\section2\helm\eazybank-services\accounts>), using
+12. Now buld dependencies for accounts helm chart inside(C:\Users\vaibh\IdeaProjects\section2\helm\environments\dev-env), using
 helm dependencies build
+
+13. To check templates after values are substitued in template,inside(C:\Users\vaibh\IdeaProjects\section2\helm\environments\dev-env), using
+helm template .
  
+ 14. do the same for prod and qa env using steps 9-13
