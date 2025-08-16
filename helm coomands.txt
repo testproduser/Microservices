@@ -35,3 +35,10 @@ helm repo add bitnami https://charts.bitnami.com/bitnami                       /
 helm install happy-panda bitnami/wordpress                                     // too install specific chart
 helm uninstall happy-panda													  // to uninstall specific chart
 
+process
+1. Create helm chart using in sepicic location(C:\Users\vaibh\IdeaProjects\section2\helm\eazybank)
+helm create eazybank
+
+2.delete all default template in templates folder and remove all content from values.yml
+
+3.
