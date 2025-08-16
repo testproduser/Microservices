@@ -54,5 +54,5 @@ helm create accounts  ( then follow step 2)
 7. Now buld dependencies for accounts helm chart inside(C:\Users\vaibh\IdeaProjects\section2\helm\eazybank-services\accounts>), using
 helm dependencies build
 
-8.
+8.following  step 4-7 create helm charts for other ms
  
