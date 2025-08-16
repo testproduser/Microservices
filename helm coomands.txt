@@ -37,8 +37,13 @@ helm uninstall happy-panda													  // to uninstall specific chart
 
 process
 1. Create helm chart using in sepicic location(C:\Users\vaibh\IdeaProjects\section2\helm\eazybank-common)
-helm create eazybank
+helm create eazybank-common
 
 2.delete all default templates in templates folder and remove all content from values.yml
 
 3.Add tempate which are commonly used in our application(deployment,service,configMap) required for all manifest file of microserices is of simmilar kind  so kept in template
+
+4. create new folder eazybank-services, in that create helm using above two steps for accounts 
+cd accounts
+helm create accounts  ( then follow step 2)
+ 
