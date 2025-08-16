@@ -28,3 +28,10 @@ Helm Command	                                                                   
 "helm template [NAME] [CHART]"                                                  //Render chart templates locally along with the values
 "helm list"	                                                                    //Lists all of the helm releases inside a K8s cluster
 
+
+
+helm search hub wordpress													   //to serach specific charts(eg.wordpress)
+helm repo add bitnami https://charts.bitnami.com/bitnami                       // to add charts repo to helm(searched results)
+helm install happy-panda bitnami/wordpress                                     // too install specific chart
+helm uninstall happy-panda													  // to uninstall specific chart
+
