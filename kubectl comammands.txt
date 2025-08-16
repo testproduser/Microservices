@@ -23,3 +23,5 @@ Kubernetes Command	                                               Description
 "kubectl rollout undo deployment gatewayserver-deployment --to-revision=1"	            //TO rollback to a given revision for a deployment inside your cluster
 "kubectl get pvc"	                                                                    //TO list the pvcs inside your cluster
 "kubectl delete pvc data-happy-panda-mariadb-0"	                                        //TO delete a pvc inside your cluster  
+"kubectl scale deployment accounts-deployment --replicas=1"	  //TO set the number of replicas for a deployment inside your cluster to scAale up or down a ms
+"kubectl set image deployment gatewayserver-deployment gatewayserver=eazybytes/gatewayserver:s11 --record"	            //TO set a new image for a deployment inside your cluster ,

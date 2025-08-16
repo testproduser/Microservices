@@ -12,3 +12,8 @@ kubectl apply -f 2_configmaps.yml
 
 5.To provide password and sensitive data use secret kind
 
+6. To delete deployment and related pods and service etc
+
+kubectl delete -f 8_gateway.yml
+kubectl delete -f 3_configserver.yml
+kubectl delete -f 2_configmaps.yml
