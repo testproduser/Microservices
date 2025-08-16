@@ -44,7 +44,7 @@ helm create eazybank-common
 3.Add tempate which are commonly used in our application(deployment,service,configMap) required for all manifest file of microserices is of simmilar kind  so kept in template
 
 4. create new folder eazybank-services, in that create helm using above two steps for accounts 
-cd accounts
+cd eazybank-services
 helm create accounts  ( then follow step 2)
 
 5.update the dependencies for accounts chart in Chart.yml
@@ -55,4 +55,15 @@ helm create accounts  ( then follow step 2)
 helm dependencies build
 
 8.following  step 4-7 create helm charts for other ms
+
+9. create new folder enviorments, in that create helm using above  steps 1-2 for dev-env 
+cd eazybank-services
+helm create dev-env   ( then follow step 2)
+
+10.update the dependencies for dev-env  chart in Chart.yml
+
+11. add common template ref file in deployment.yml and service.yml of dev-env  template
+
+12. Now buld dependencies for accounts helm chart inside(C:\Users\vaibh\IdeaProjects\section2\helm\eazybank-services\accounts>), using
+helm dependencies build
  
